@@ -3,11 +3,13 @@
 // 2. put(key, value) - set or insert the value if the key is not already present. When the cache reached its capacity, it should invalidate the least recently used item before inserting a new item.
 // The cache is initialized with a positive capacity.
 
-class LRUCache<K, T> {
+export class LRUCache<K, T> {
     private cache: Map<K, T>;
     private capacity: number;
     
     constructor(capacity: number) {
+        if (capacity <= 0 || !capacity) throw new Error('Capacity must be greater than 0');
+
         this.cache = new Map<K, T>();
         this.capacity = capacity;
     }
@@ -22,6 +24,10 @@ class LRUCache<K, T> {
         this.cache.set(key, value as T);
     
         return value;
+    }
+
+    peek(key: K): T | undefined {
+        return this.cache.get(key);
     }
     
     put(key: K, value: T): void {
