@@ -1,46 +1,40 @@
-export class LRUCache<K, T> {
-    private cache: Map<K, T>;
-    private capacity: number;
-    
-    constructor(capacity: number) {
-        if (capacity <= 0 || !capacity) throw new Error('Capacity must be greater than 0');
-
-        this.cache = new Map<K, T>();
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.LRUCache = void 0;
+class LRUCache {
+    constructor(capacity) {
+        if (capacity <= 0 || !capacity)
+            throw new Error('Capacity must be greater than 0');
+        this.cache = new Map();
         this.capacity = capacity;
     }
-    
-    get(key: K): T | undefined {
+    get(key) {
         if (!this.cache.has(key)) {
             return;
         }
-    
         const value = this.cache.get(key);
         this.cache.delete(key);
-        this.cache.set(key, value as T);
-    
+        this.cache.set(key, value);
         return value;
     }
-
-    peek(key: K): T | undefined {
+    peek(key) {
         return this.cache.get(key);
     }
-    
-    put(key: K, value: T): void {
+    put(key, value) {
         if (this.cache.has(key)) {
             this.cache.delete(key);
-        } else if (this.cache.size === this.capacity) {
+        }
+        else if (this.cache.size === this.capacity) {
             const keys = this.cache.keys();
             this.cache.delete(keys.next().value);
         }
-    
         this.cache.set(key, value);
     }
-
-    delete(key: K): void {
+    delete(key) {
         this.cache.delete(key);
     }
-
-    reset(): void {
+    reset() {
         this.cache.clear();
     }
 }
+exports.LRUCache = LRUCache;
