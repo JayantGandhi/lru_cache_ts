@@ -1,6 +1,6 @@
 Simple LRU Cache of a fixed size. It evicts the least used item when the capcity is exceeded.
 
-##Usage
+## Usage
 ```ts
 const cache = new LRUCache<number, string>(2);
 cache.put(1, 'one');
@@ -19,3 +19,6 @@ To reset the whole cache:
 ```ts
 cache.reset();
 ```
+
+## Demo
+To run the demo - install with `npm install` and run with `npm run start`

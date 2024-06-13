@@ -4,11 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "vitest"
+    "test": "vitest",
+    "start": "npx tsx demo.ts"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "tsx": "^4.15.4",
     "vitest": "^1.6.0"
   }
 }
