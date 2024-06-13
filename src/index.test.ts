@@ -10,6 +10,13 @@ describe('LRUCache', () => {
         expect(cache.get(2)).toBe('two');
     });
 
+    it('should update a value when put is called with an existing key', () => {
+        const cache = new LRUCache<number, string>(2);
+        cache.put(1, 'one');
+        cache.put(1, 'updated');
+        expect(cache.get(1)).toBe('updated');
+    });
+
     it('should delete values', () => {
         const cache = new LRUCache<number, string>(2);
         cache.put(1, 'one');
